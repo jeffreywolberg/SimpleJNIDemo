@@ -3,10 +3,19 @@ A simple application to show how to use JNI in order to communicate between C/CP
 
 Change JAVA_HOME variable inside Makefile based on your JDK directory before building.
 
-Build the sample application:
----------------------------------
-  make temperaturesampler
+## Dependencies
+Youn will need Java and g++ in order to build the project.
+```bash
+sudo apt-get install default-jdk build-essentials
+```
 
-Build and run afterwards:
-----------------------------------
-  make run_temperaturesampler
+## Build the sample application:
+```bash
+make temperaturesampler
+```
+  
+
+## Build and run afterwards:
+```bash
+make run_temperaturesampler
+```
