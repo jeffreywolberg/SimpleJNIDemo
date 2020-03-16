@@ -16,6 +16,10 @@ public class TemperatureSampler {
         }
     }
 
+    public TemperatureScale getPreferredScale() {
+        return TemperatureScale.KELVIN;
+    }
+
     private native float getTemperature();
     private native TemperatureData getDetailedTemperature();
 }

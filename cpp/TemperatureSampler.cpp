@@ -25,6 +25,15 @@ JNIEXPORT jobject JNICALL Java_com_jni_example_TemperatureSampler_getDetailedTem
     jfieldID scaleEnumID = env->GetStaticFieldID(temperatureScaleClass, "CELCIUS", "Lcom/jni/example/TemperatureScale;");
     jobject celciusScale = env->GetStaticObjectField(temperatureScaleClass, scaleEnumID);
 
+    // Check if CELCIUS is the supported scale.
+    jclass callerClass = env->GetObjectClass(thisObject);
+    jmethodID preferredScaleMethodID = env->GetMethodID(callerClass, "getPreferredScale", "()Lcom/jni/example/TemperatureScale;");
+    jobject preferredScale = env->CallObjectMethod(thisObject, preferredScaleMethodID);
+
+    if (!env->IsSameObject(preferredScale, celciusScale)) {
+        std::cout << "Preferred scale is not supported, using CELCIUS instead!" << std::endl;
+    }
+
     // Set TemperatureData fields.
     env->SetObjectField(temperatureData, timestamp, env->NewStringUTF("02-03-2020 17:30:48"));
     env->SetFloatField(temperatureData, temperature, 27.8);
